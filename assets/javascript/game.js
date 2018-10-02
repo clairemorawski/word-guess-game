@@ -7,6 +7,8 @@ let wordSelected="";
 let lettersGuessed=[];
 let letterToCheck;
 let numberOfGuesses=5;
+let splitWord=[]; //creates an empty array, maybe move this to globabl?
+let spaces; // sets the number of spaces
 
 //this function iterates wins variable
 function wonGame() {
@@ -37,7 +39,7 @@ function printLettersGuessed() {
 //Keep playing function
 function keepPlaying() {
     if (lettersGuessed.some(checkLetter)) { //if any checkletter matches any already in lettersguess array, true
-        console.log("Already guessed!");//debugg
+        console.log("Already guessed!");//debug
     } else {
         lettersGuessed.push(event.key); // pushes the letter typed into the lettersGuessed array
         console.log(lettersGuessed); // debug purposes
@@ -65,22 +67,32 @@ function wordSelector() {
 
 //word splitter function, splits the selected word apart
 function wordSplitter(value) {
-    let splitWord=[]; //creates an empty array, maybe move this to globabl?
     splitWord=value.split(""); // splits the string apart into its constituents into the splitWord array
     console.log(splitWord); //debugging
     console.log(splitWord.length); //debugging
 }
 
 //trying to build the guesser component
-function guesser(arr) {
+function guesser(value) {
+    
+}
 
+//takes however long the target word is, creates that many spaces, and prints it on the webpage
+function printSpaces() {
+    spaces=splitWord.length;
+    let i;
+    let totalSpaces=[];
+    for (i=0; i < spaces; i++) {
+        totalSpaces.push(" __ ");
+    }
+    document.getElementById("spaces").innerHTML=totalSpaces.join(" ");
 }
 
 // ---------------------GAMEPLAY---------------------------------------------
 wordSelector();
 wordSplitter(wordSelected);
 printGuesses();
-
+printSpaces();
 
 
 document.onkeyup = function(event) {
