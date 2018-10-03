@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Content!</title>
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <h1>Scractch</h1>
+  <hr>
+
+  <!-- Here we create a generic drink-options div -->
+  <div id="blank-div"></div>
+
+  <script type="text/javascript">
+    //so I'm trying to build a mockup of the function that will become the word checker
+    var testWord="boot";
+    var splitupTestWord=[];
+    splitupTestWord=testWord.split("");
+    //console.log(testWord);
+    //console.log(splitupTestWord);
+    var guessInProgress=[];
+    var correctLetters=[];
+    
+
+    function prepareGuessInProgress () {
+        spaces=splitupTestWord.length;
+        for (i=0; i < spaces; i++) {
+            guessInProgress.push(" * ");
+        }
+      }
+
+    function tester (e) {
+      for(i=0; i<splitupTestWord.length; i++) {
+        if(e==splitupTestWord[i]) {
+          correctLetters.push(e);
+          //console.log('correct letter' + e);
+          for (j=0; j<correctLetters.length; j++) {
+            if(splitupTestWord[i]=correctLetters[j]) {
+              guessInProgress[i] = correctLetters[j];
+            } // else guessInProgress[i] = "*";
+          } 
+         } //else console.log("Blah");
+        }}//{guessInProgress[i]="*"}}} //else console.log(guessInProgress);
+      
+
+     //     guessInProgress[i] = e;
+     // } else {guessInProgress[i] = "*";}}}
+
+    prepareGuessInProgress();
+    console.log(guessInProgress);
+    
+    tester("e");
+    console.log(guessInProgress);
+
+    tester("b");
+    console.log(guessInProgress);
+
+    tester("t");
+    console.log(guessInProgress);
+
+    tester("y");
+    console.log(guessInProgress);
+
+     tester("x");
+    console.log(guessInProgress);
+
+      tester("r");
+    console.log(guessInProgress);
+          
+     tester("o");
+     console.log(guessInProgress);
+
+     
+
+    
+
+    
+
+  </script>
+
+</body>
+</html>
