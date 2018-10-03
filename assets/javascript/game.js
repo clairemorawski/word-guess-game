@@ -1,6 +1,6 @@
 //GLOBAL VARIABLES----------------------------------------------
 
-const words = ["summit", "surly", "schells", "fulton", "indeed"]; // array for the word bank
+const words = ["summit", "surly", "schells", "fulton", "indeed","bang", "bauhaus","fitgers", "finnegans", "insight", "invictus", "lynnlake", "modist", "pyres", "sisyphus", "sociable", "utepils", "waldmann", "voyageur"]; // array for the word bank
 let maxWords = words.length;
 let wins = 0;
 let wordSelected="";
@@ -116,10 +116,10 @@ function keepPlaying() {
         console.log("Already guessed!");//debug
     } else {
         lettersGuessed.push(event.key); // pushes the letter typed into the lettersGuessed array
+        numberOfGuesses--;
         console.log(lettersGuessed); // debug purposes
         printLettersGuessed();
         tester(event.key);
-        numberOfGuesses--;
         printSpaces();
         printGuesses();
     }
@@ -147,13 +147,11 @@ resetGame();
 //Once a key is pressed
 document.onkeyup = function(event) {
     letterToCheck = (event.key); //set letterToCheck to the letter typed on keyboard
-    console.log(letterToCheck); // debug purpose
-    if (numberOfGuesses >=1 && didIWin()===false) { // while there are still guesses remaining, do this:
+    if (numberOfGuesses > 0 && didIWin()===false) { // while there are still guesses remaining, do this:
         keepPlaying();
     } else  {     // once guesses are exhausted do this:
             if(didIWin()===true) {
                 wonGame();
                 resetGame();
-            } else resetGame();
+            } else resetGame();}
     }
-}
