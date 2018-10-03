@@ -7,7 +7,7 @@ let wordSelected="";
 let lettersGuessed=[];
 let letterToCheck;
 let numberOfGuesses=8;
-var splitWord=[]; //creates an empty array
+let splitWord=[]; //creates an empty array
 //var splitWord=wordSelected.split(""); //splits the selected word into individual letters
 let guessInProgress=[]; //sets up the blank array for guess in progress
 let correctLetters=[]; //empty array where the correct letters go
@@ -91,12 +91,6 @@ function wordSplitter(value) {
 
 //takes however long the target word is, creates that many spaces, and prints it on the webpage
 function printSpaces() {
-    //spaces=splitWord.length;
-    //let i;
-    //let totalSpaces=[];
-    //for (i=0; i < spaces; i++) {
-        //totalSpaces.push(" __ ");
-   // }
     document.getElementById("spaces").innerHTML=guessInProgress.join(" ");
 }
 
@@ -118,18 +112,25 @@ function keepPlaying() {
 //Reset Game function
 function resetGame() {
     lettersGuessed=[]; // reset letters guessed
-    printLettersGuessed();
-    numberOfGuesses=5; // reset number of guesses
-    printGuesses()
+    guessInProgress=[]; //resets guessInProgress
+    correctLetters=[]; // resets correct letters
+    splitWord=[]; // resets splitWord
+    numberOfGuesses=8; // reset number of guesses
+    wordSelector(); // selects the word
+    wordSplitter(wordSelected); //splits the selected word apart
+    prepareGuessInProgress(); // prepares the guessInProgress array with requisite number of blanks
+    printGuesses(); // displays total number of guesses
+    printSpaces(); // displays contents of guessInProgress on page
 }
 
 // ---------------------GAMEPLAY---------------------------------------------
 
-wordSelector(); // selects the word
-wordSplitter(wordSelected); //splits the selected word apart
-prepareGuessInProgress(); // prepares the guessInProgress array with requisite number of blanks
-printGuesses(); // displays total number of guesses
-printSpaces(); // displays contents of guessInProgress on page
+resetGame();
+// wordSelector(); // selects the word
+// wordSplitter(wordSelected); //splits the selected word apart
+// prepareGuessInProgress(); // prepares the guessInProgress array with requisite number of blanks
+// printGuesses(); // displays total number of guesses
+// printSpaces(); // displays contents of guessInProgress on page
 
 
 
