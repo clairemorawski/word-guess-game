@@ -1,14 +1,49 @@
 //GLOBAL VARIABLES----------------------------------------------
 
-const words = ["Summit", "Surly", "Schells"]; // the word bank array
+const words = ["summit", "surly", "schells"]; // array for the word bank
 let maxWords = words.length;
 let wins = 0;
 let wordSelected="";
 let lettersGuessed=[];
 let letterToCheck;
-let numberOfGuesses=5;
-let splitWord=[]; //creates an empty array, maybe move this to globabl?
-let spaces; // sets the number of spaces
+let numberOfGuesses=8;
+var splitWord=[]; //creates an empty array
+//var splitWord=wordSelected.split(""); //splits the selected word into individual letters
+let guessInProgress=[]; //sets up the blank array for guess in progress
+let correctLetters=[]; //empty array where the correct letters go
+
+//var splitupTestWord=[];
+
+//console.log(testWord);
+//console.log(splitupTestWord);
+
+//---FUNCTIONS----------------------------------------------------
+
+//Prepares the hangman blanks
+function prepareGuessInProgress () {
+    spaces=splitWord.length; // sets spaces equal the length of the splitWord array
+    for (i=0; i < spaces; i++) {
+        guessInProgress.push(" __ "); // for loop that pushes the appropriate number of blanks into guessInProgress
+    }
+  }
+
+
+//the tester function
+function tester (e) {
+  for(i=0; i<splitWord.length; i++) {
+    if(e==splitWord[i]) {
+      correctLetters.push(e);
+      //console.log('correct letter' + e);
+      for (j=0; j<correctLetters.length; j++) {
+        if(splitWord[i]=correctLetters[j]) {
+          guessInProgress[i] = correctLetters[j];
+        } // else guessInProgress[i] = "*";
+      } 
+     }
+    }
+}
+
+  
 
 //this function iterates wins variable
 function wonGame() {
@@ -36,26 +71,6 @@ function printLettersGuessed() {
     document.getElementById("printLettersGuessed").innerHTML = lettersGuessed;
 }
 
-//Keep playing function
-function keepPlaying() {
-    if (lettersGuessed.some(checkLetter)) { //if any checkletter matches any already in lettersguess array, true
-        console.log("Already guessed!");//debug
-    } else {
-        lettersGuessed.push(event.key); // pushes the letter typed into the lettersGuessed array
-        console.log(lettersGuessed); // debug purposes
-        printLettersGuessed();
-        numberOfGuesses--;
-        printGuesses();
-    }
-}
-
-//Reset Game function
-function resetGame() {
-    lettersGuessed=[]; // reset letters guessed
-    printLettersGuessed();
-    numberOfGuesses=5; // reset number of guesses
-    printGuesses()
-}
 
 //word selector function
 function wordSelector() {
@@ -68,31 +83,54 @@ function wordSelector() {
 //word splitter function, splits the selected word apart
 function wordSplitter(value) {
     splitWord=value.split(""); // splits the string apart into its constituents into the splitWord array
-    console.log(splitWord); //debugging
-    console.log(splitWord.length); //debugging
+//    console.log(splitWord); //debugging
+//    console.log(splitWord.length); //debugging
 }
 
-//trying to build the guesser component
-function guesser(value) {
-    
-}
+
 
 //takes however long the target word is, creates that many spaces, and prints it on the webpage
 function printSpaces() {
-    spaces=splitWord.length;
-    let i;
-    let totalSpaces=[];
-    for (i=0; i < spaces; i++) {
-        totalSpaces.push(" __ ");
+    //spaces=splitWord.length;
+    //let i;
+    //let totalSpaces=[];
+    //for (i=0; i < spaces; i++) {
+        //totalSpaces.push(" __ ");
+   // }
+    document.getElementById("spaces").innerHTML=guessInProgress.join(" ");
+}
+
+//Keep playing function
+function keepPlaying() {
+    if (lettersGuessed.some(checkLetter)) { //if any checkletter matches any already in lettersguess array, true
+        console.log("Already guessed!");//debug
+    } else {
+        lettersGuessed.push(event.key); // pushes the letter typed into the lettersGuessed array
+        console.log(lettersGuessed); // debug purposes
+        printLettersGuessed();
+        tester(event.key);
+        numberOfGuesses--;
+        printSpaces();
+        printGuesses();
     }
-    document.getElementById("spaces").innerHTML=totalSpaces.join(" ");
+}
+
+//Reset Game function
+function resetGame() {
+    lettersGuessed=[]; // reset letters guessed
+    printLettersGuessed();
+    numberOfGuesses=5; // reset number of guesses
+    printGuesses()
 }
 
 // ---------------------GAMEPLAY---------------------------------------------
-wordSelector();
-wordSplitter(wordSelected);
-printGuesses();
-printSpaces();
+
+wordSelector(); // selects the word
+wordSplitter(wordSelected); //splits the selected word apart
+prepareGuessInProgress(); // prepares the guessInProgress array with requisite number of blanks
+printGuesses(); // displays total number of guesses
+printSpaces(); // displays contents of guessInProgress on page
+
 
 
 document.onkeyup = function(event) {
