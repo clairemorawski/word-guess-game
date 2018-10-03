@@ -1,6 +1,6 @@
 //GLOBAL VARIABLES----------------------------------------------
 
-const words = ["summit", "surly", "schells"]; // array for the word bank
+const words = ["summit", "surly", "schells", "fulton", "indeed"]; // array for the word bank
 let maxWords = words.length;
 let wins = 0;
 let wordSelected="";
@@ -48,6 +48,8 @@ function tester (e) {
 //this function iterates wins variable
 function wonGame() {
     wins++;
+    document.getElementById("wins").innerHTML = wins;
+
 }
 
 //the random number generator
@@ -94,6 +96,20 @@ function printSpaces() {
     document.getElementById("spaces").innerHTML=guessInProgress.join(" ");
 }
 
+//tests to see if the player won
+function didIWin() {
+    let counter = 0;
+    for (k = 0; k < wordSelected.length; k++) {
+      if (guessInProgress[k] === wordSelected[k]) {
+        counter++;
+      }
+    }
+    if (counter === wordSelected.length) {
+        return true;
+     // console.log("You won!");
+    } else return false; //console.log("Keep trying");
+  }
+
 //Keep playing function
 function keepPlaying() {
     if (lettersGuessed.some(checkLetter)) { //if any checkletter matches any already in lettersguess array, true
@@ -125,21 +141,19 @@ function resetGame() {
 
 // ---------------------GAMEPLAY---------------------------------------------
 
+//Initial Load of Game
 resetGame();
-// wordSelector(); // selects the word
-// wordSplitter(wordSelected); //splits the selected word apart
-// prepareGuessInProgress(); // prepares the guessInProgress array with requisite number of blanks
-// printGuesses(); // displays total number of guesses
-// printSpaces(); // displays contents of guessInProgress on page
 
-
-
+//Once a key is pressed
 document.onkeyup = function(event) {
     letterToCheck = (event.key); //set letterToCheck to the letter typed on keyboard
     console.log(letterToCheck); // debug purpose
-    if (numberOfGuesses > 0) { // while there are still guesses remaining, do this:
+    if (numberOfGuesses >=1 && didIWin()===false) { // while there are still guesses remaining, do this:
         keepPlaying();
     } else  {     // once guesses are exhausted do this:
-          resetGame();
+            if(didIWin()===true) {
+                wonGame();
+                resetGame();
+            } else resetGame();
     }
 }
