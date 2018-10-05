@@ -117,6 +117,10 @@ function keepPlaying() {
         tester(event.key);
         printSpaces();
         printGuesses();
+        if(didIWin()===true) {
+            wonGame();
+            resetGame();
+        }
     }
 }
 
@@ -148,5 +152,7 @@ document.onkeyup = function(event) {
             if(didIWin()===true) {
                 wonGame();
                 resetGame();
-            } else resetGame();}
+            } else if (didIWin()===false) 
+                resetGame();
+        }
     }
