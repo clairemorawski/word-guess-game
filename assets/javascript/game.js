@@ -6,16 +6,12 @@ let wins = 0;
 let wordSelected="";
 let lettersGuessed=[];
 let letterToCheck;
-let numberOfGuesses=8;
+let numberOfGuesses=10;
 let splitWord=[]; //creates an empty array
-//var splitWord=wordSelected.split(""); //splits the selected word into individual letters
 let guessInProgress=[]; //sets up the blank array for guess in progress
 let correctLetters=[]; //empty array where the correct letters go
 
-//var splitupTestWord=[];
 
-//console.log(testWord);
-//console.log(splitupTestWord);
 
 //---FUNCTIONS----------------------------------------------------
 
@@ -115,8 +111,8 @@ function keepPlaying() {
     if (lettersGuessed.some(checkLetter)) { //if any checkletter matches any already in lettersguess array, true
         console.log("Already guessed!");//debug
     } else {
-        lettersGuessed.push(event.key); // pushes the letter typed into the lettersGuessed array
         numberOfGuesses--;
+        lettersGuessed.push(event.key); // pushes the letter typed into the lettersGuessed array
         console.log(lettersGuessed); // debug purposes
         printLettersGuessed();
         tester(event.key);
@@ -127,11 +123,11 @@ function keepPlaying() {
 
 //Reset Game function
 function resetGame() {
+    numberOfGuesses=10; // reset number of guesses   
     lettersGuessed=[]; // reset letters guessed
     guessInProgress=[]; //resets guessInProgress
     correctLetters=[]; // resets correct letters
     splitWord=[]; // resets splitWord
-    numberOfGuesses=8; // reset number of guesses
     wordSelector(); // selects the word
     wordSplitter(wordSelected); //splits the selected word apart
     prepareGuessInProgress(); // prepares the guessInProgress array with requisite number of blanks

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Hangman: Craft Brewers Edition</title>
+    <title>Hangman: MN Brewers Edition</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--Link to reset CSS-->
     <link rel="stylesheet" type="text/css"  href="assets/css/reset.css" />
@@ -18,14 +18,15 @@
         <!--Top header for the page-->
         <div class="row">
             <div class="col-md-12 text-center">
-                <h1>Hangman: MN Craft Brewers Edition</h1>
+                <h1>Hangman: MN  Brewers Edition</h1>
             </div>
         </div>
+        <br />
         <!--the box that divided in two-->
         <!--Where the images might go if I get this figured out-->
         <div class="row">
             <div class="col-md-6 text-center">
-                <h2>Images</h2>
+                <div id="images"></div>
             </div>
             <!--Where the gameplay happens-->
             <div class="col-md-6 text-center">
@@ -36,6 +37,7 @@
                             <h4>Press any key to get started!</h4>
                         </div>
                     </div>
+                    <br />
                     <!--Wins Box-->
                     <div class="row">
                         <div class = "col-md-12">
@@ -43,6 +45,7 @@
                             <h4 id="wins">0</h4>  
                         </div>
                     </div>
+                    <br />
                     <!--Current word box-->
                     <div class="row">
                         <div class = "col-md-12">
@@ -50,6 +53,7 @@
                             <h4 id="spaces"> </h4>
                         </div>
                     </div>
+                    <br />
                     <!--Number of guesses remaining box-->
                     <div class="row">
                         <div class = "col-md-12">
@@ -57,6 +61,7 @@
                             <h4 id ="guessesRemaining">0</h4>
                         </div>
                     </div>
+                    <br />
                     <!--Letters guessed box-->
                     <div class="row">
                         <div class = "col-md-12">
