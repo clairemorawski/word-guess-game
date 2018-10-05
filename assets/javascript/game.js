@@ -18,8 +18,8 @@ let correctLetters=[]; //empty array where the correct letters go
 //Prepares the hangman blanks
 function prepareGuessInProgress () {
     spaces=splitWord.length; // sets spaces equal the length of the splitWord array
-    for (i=0; i < spaces; i++) {
-        guessInProgress.push(" __ "); // for loop that pushes the appropriate number of blanks into guessInProgress
+    for (i=0; i < spaces; i++) { // for loop that pushes the appropriate number of blanks into guessInProgress
+        guessInProgress.push(" __ "); 
     }
   }
 
