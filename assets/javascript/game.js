@@ -24,7 +24,7 @@ function prepareGuessInProgress () {
   }
 
 
-//the tester function
+//The tester function that tests letters guessed against the word selected
 function tester (e) {
   for(i=0; i<splitWord.length; i++) {
     if(e==splitWord[i]) {
@@ -41,7 +41,7 @@ function tester (e) {
 
   
 
-//this function iterates wins variable
+//this function iterates wins variable and prints it to the screen
 function wonGame() {
     wins++;
     document.getElementById("wins").innerHTML = wins;
@@ -54,8 +54,7 @@ function getRandomInt(max) {
 }
 
 
-//to check the letter guessed against those already guessed
-
+//to check the current letter guessed against those already guessed in the lettersGuesed array
 var checkLetter = function(element) {
     return element === letterToCheck;
 }
@@ -70,7 +69,7 @@ function printLettersGuessed() {
 }
 
 
-//word selector function
+//Selects a random word from the words array
 function wordSelector() {
     let randomNumber=0; //creates a local variable randomNumber
     randomNumber=getRandomInt(maxWords); //sets randomNumber equal to getRandomInt call
@@ -78,7 +77,7 @@ function wordSelector() {
     console.log(wordSelected); // for debugging
 }
 
-//word splitter function, splits the selected word apart
+//Splits the word selected into individual letters
 function wordSplitter(value) {
     splitWord=value.split(""); // splits the string apart into its constituents into the splitWord array
 //    console.log(splitWord); //debugging
@@ -87,12 +86,12 @@ function wordSplitter(value) {
 
 
 
-//takes however long the target word is, creates that many spaces, and prints it on the webpage
+//Takes however long the target word is, creates that many spaces, and prints it on the webpage
 function printSpaces() {
     document.getElementById("spaces").innerHTML=guessInProgress.join(" ");
 }
 
-//tests to see if the player won
+//Tests to see if the player won
 function didIWin() {
     let counter = 0;
     for (k = 0; k < wordSelected.length; k++) {
@@ -121,7 +120,7 @@ function keepPlaying() {
     }
 }
 
-//Reset Game function
+//Reset Game function, resets the game
 function resetGame() {
     numberOfGuesses=10; // reset number of guesses   
     lettersGuessed=[]; // reset letters guessed
